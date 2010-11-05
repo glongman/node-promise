@@ -94,8 +94,9 @@ Promise.prototype.put = function(propertyName, value){
 };
 
 Promise.prototype.call = function(functionName /*, args */){
+  var args = Array.prototype.slice.call(arguments, 1);
   return this.then(function(value){
-    return value[functionName].apply(value, Array.prototype.slice.call(arguments, 1));
+    return value[functionName].apply(value, args);
   });
 };
 
